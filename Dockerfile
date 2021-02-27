@@ -35,6 +35,8 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 \
         # Deploy tools
         yarn \
         openssh-client \
+        # PHP MongoDB extension dependency
+        libcurl4-openssl-dev pkg-config libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd \
@@ -59,10 +61,12 @@ RUN docker-php-ext-configure gd \
     && pecl install imagick-3.4.3 \
     && pecl install mcrypt-1.0.3 \
     && pecl install redis \
+    && pecl install mongodb \
     && docker-php-ext-enable \
         imagick \
         mcrypt \
         redis \
+        mongodb \
     # Disable ImageMagick PDF security policies
     && sed -i '/^ *<!--/! s/<policy domain="coder" rights="none" pattern="PDF" \/>/<!-- <policy domain="coder" rights="none" pattern="PDF" \/> -->/' /etc/ImageMagick-6/policy.xml \
     # Delete extracted php source
