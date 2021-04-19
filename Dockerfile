@@ -37,12 +37,16 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 \
         openssh-client \
         # PHP MongoDB extension dependency
         libcurl4-openssl-dev pkg-config libssl-dev \
+        # PHP LDAP extension dependency
+        libldap2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd \
         --with-jpeg \
         --with-freetype \
         --with-jpeg \
+    && docker-php-ext-configure ldap \
+    --with-libdir=lib/x86_64-linux-gnu/ \
     # Install defualt extension
     && docker-php-ext-install \
         bcmath \
