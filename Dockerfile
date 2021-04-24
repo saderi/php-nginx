@@ -62,6 +62,7 @@ RUN docker-php-ext-configure gd \
         intl \
         pcntl \
         iconv \
+        ldap \
     && pecl install imagick-3.4.3 \
     && pecl install mcrypt-1.0.3 \
     && pecl install redis \
