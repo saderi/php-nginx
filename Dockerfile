@@ -69,6 +69,6 @@ RUN ln -s /etc/nginx/sites-available/nginx-site.conf /etc/nginx/conf.d/nginx-sit
 
 COPY nginx_default.php /var/www/html/public/nginx_default.php
 
-EXPOSE 80 443
+EXPOSE 80
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
